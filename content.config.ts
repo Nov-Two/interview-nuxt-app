@@ -121,9 +121,16 @@ export default defineContentConfig({
     }),
     about: defineCollection({
       type: 'page',
-      source: 'about.yml',
-      schema: z.object({
-        content: z.object({}),
+      source: 'about.md',
+      schema: createBaseSchema().extend({
+        images: z.array(createImageSchema())
+      })
+    }),
+    // Separate collection for Chinese content to avoid query conflicts
+    about_zh: defineCollection({
+      type: 'page',
+      source: 'about.zh.md',
+      schema: createBaseSchema().extend({
         images: z.array(createImageSchema())
       })
     })

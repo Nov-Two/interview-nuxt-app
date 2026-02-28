@@ -6,7 +6,7 @@ const items = computed(() =>
     label: l.name,
     type: 'checkbox' as const,
     checked: l.code === locale.value,
-    onSelect: () => setLocale(l.code)
+    onSelect: () => setLocale(l.code as 'en' | 'zh')
   }))
 )
 </script>

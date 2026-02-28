@@ -1,7 +1,13 @@
 <script setup lang="ts">
-const { data: page } = await useAsyncData('about', () => {
-  return queryCollection('about').first()
+const { locale } = useI18n()
+
+const { data: page } = await useAsyncData('about-page-data', () => {
+  const collectionName = locale.value === 'zh' ? 'about_zh' : 'about'
+  return queryCollection(collectionName as 'about').first()
+}, {
+  watch: [locale]
 })
+console.log(page.value)
 if (!page.value) {
   throw createError({
     statusCode: 404,
@@ -35,9 +41,9 @@ useSeoMeta({
     >
       <UColorModeAvatar
         class="sm:rotate-4 size-36 rounded-lg ring ring-default ring-offset-3 ring-offset-(--ui-bg)"
-        :light="global.picture?.light!"
-        :dark="global.picture?.dark!"
-        :alt="global.picture?.alt!"
+        :light="global.picture?.light"
+        :dark="global.picture?.dark"
+        :alt="global.picture?.alt"
       />
     </UPageHero>
     <UPageSection
@@ -45,16 +51,18 @@ useSeoMeta({
         container: '!pt-0'
       }"
     >
-      <MDC
-        :value="page.content"
-        unwrap="p"
+      <ContentRenderer
+        v-if="page?.body"
+        :key="locale"
+        :value="page"
+        class="prose dark:prose-invert max-w-none"
       />
       <div class="flex flex-row justify-center items-center py-10 space-x-[-2rem]">
         <PolaroidItem
           v-for="(image, index) in page.images"
           :key="index"
           :image="image"
-          :index
+          :index="index"
         />
       </div>
     </UPageSection>
