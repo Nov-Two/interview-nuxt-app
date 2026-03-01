@@ -19,6 +19,8 @@ jobs:
         password: ${{ secrets.SERVER_PASSWORD }}
         port: 22
         script: |
+          set -e  # 遇到错误立即停止执行
+
           # 进入项目目录
           # 注意：请确保服务器上已经克隆了代码仓库到此目录
           cd /home/interview-nuxt-app
