@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { footer } = useAppConfig()
+
+console.log(footer)
 </script>
 
 <template>

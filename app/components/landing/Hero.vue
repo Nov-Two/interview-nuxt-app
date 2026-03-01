@@ -106,7 +106,7 @@ defineProps<{
           class="flex items-center gap-2"
         >
           <UButton v-bind="page.hero.links[0]" />
-          <UButton
+          <!-- <UButton
             :color="global.available ? 'success' : 'error'"
             variant="ghost"
             class="gap-2"
@@ -125,7 +125,7 @@ defineProps<{
                 />
               </span>
             </template>
-          </UButton>
+          </UButton> -->
         </div>
       </Motion>
 

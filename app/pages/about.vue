@@ -7,7 +7,6 @@ const { data: page } = await useAsyncData('about-page-data', () => {
 }, {
   watch: [locale]
 })
-console.log(page.value)
 if (!page.value) {
   throw createError({
     statusCode: 404,

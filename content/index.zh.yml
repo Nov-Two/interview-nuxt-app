@@ -1,5 +1,100 @@
 seo:
-  title: ""
-  description: ""
-title: ""
-description: ""
+  title: "张兴光 - 前端开发者"
+  description: "欢迎来到我的作品集！我是张兴光，一名常驻波士顿的前端开发者。我专注于创造既美观又实用的以用户为中心的数字体验。"
+title: "你好，我是张兴光 前端开发者"
+description: "我打造直观的数字体验，将设计与功能完美结合。常驻广州，通过代码和创意将想法变为现实。"
+hero:
+  links:
+    - label: "使用此模板"
+      to: https://github.com/nuxt-ui-templates/portfolio
+      color: "neutral"
+  images:
+    - src: /hero/random-1.avif
+      alt: 随机图片 1
+    - src: /hero/random-2.avif
+      alt: 随机图片 2
+    - src: /hero/random-3.avif
+      alt: 随机图片 3
+    - src: /hero/random-4.avif
+      alt: 随机图片 4
+    - src: /hero/random-5.avif
+      alt: 随机图片 5
+    - src: /hero/random-6.avif
+      alt: 随机图片 6
+    - src: /hero/random-7.avif
+      alt: 随机图片 7
+    - src: /hero/random-8.avif
+      alt: 随机图片 8
+    - src: /hero/random-9.avif
+      alt: 随机图片 9
+about:
+  title: "关于我"
+  description: |
+    作为一名拥有6年经验的UX/UI设计师和前端开发者，我利用波士顿大学交互设计学位来打造以用户为中心的数字体验。
+    我的方法将创意策略与技术专长相结合，将概念转化为功能性、目的明确的数字产品，无缝集成设计和技术。
+experience:
+  title: 工作经历
+  items:
+    - position: "品牌设计师"
+      date: "2023 - 至今"
+      company:
+        name: Nuxt
+        logo: "i-simple-icons-nuxtdotjs"
+        url: "https://nuxt.com"
+        color: "#00DC82"
+    - position: "资产设计师"
+      date: "2022 - 2023"
+      company:
+        name: Raycast
+        logo: "i-simple-icons-raycast"
+        url: "https://raycast.com"
+        color: "#FF6363"
+    - position: "高级 UX/UI 设计师"
+      date: "2020 - 2021"
+      company:
+        name: Linear
+        logo: "i-simple-icons-linear"
+        url: "https://linear.app"
+        color: "#5E6AD2"
+testimonials:
+  - quote: "Emma 对 UX 设计的方法彻底改变了我们的产品。她有一种罕见的能力，能够平衡美学与功能简洁性。重新设计不仅看起来更好，而且将我们的客户支持工单减少了 40%，并提高了所有关键指标的转化率。"
+    author:
+      name: 'Sarah Chen'
+      description: 'Bloom Finance 产品总监'
+      avatar:
+        src: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=40&h=40&q=80'
+        srcset: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=80&h=80&q=80 2x'
+  - quote: "与 Emma 合作是我们初创公司做出的最佳决定。她不仅交付了设计，还挑战了我们的假设，进行了彻底的用户研究，并创造了真正引起我们受众共鸣的体验。她的前端开发技术知识意味着与我们工程团队的交接是无缝的。"
+    author:
+      name: 'Michael Rodriguez'
+      description: 'Wavelength Music 联合创始人'
+      avatar:
+        src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=40&h=40&q=80'
+        srcset: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=80&h=80&q=80 2x'
+  - quote: "Emma 在将复杂的可持续性数据转化为直观界面方面表现出色。她在 EcoTrack 上的工作不仅在视觉上令人惊叹，而且从根本上改变了我们的用户与环境信息互动的方式。她以创造力和分析严谨性处理每个问题，这正是我们所需要的。"
+    author:
+      name: 'Dr. Aisha Johnson'
+      description: 'GreenTech Solutions 首席创新官'
+      avatar:
+        src: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=40&h=40&q=80'
+        srcset: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=80&h=80&q=80 2x'
+blog:
+  title: "最新文章"
+  description: "我最近的一些想法"
+faq:
+  title: 常见问题
+  description: 关于我的流程和服务的常见问题解答。
+  categories:
+    - title: 服务与流程
+      questions:
+        - label: 你提供什么服务？
+          content: |
+            我专注于 UX/UI 设计和前端开发。这包括用户研究、线框图制作、交互原型设计、创建直观的用户界面、构建响应式网站和 Web 应用程序（特别是使用 Vue.js/Nuxt.js），以及开发设计系统。我的目标是从概念到部署创造无缝的数字体验。
+        - label: 你的设计流程是怎样的？
+          content: |
+            我的流程是协作和迭代的，通常涉及发现与研究、构思与原型设计、用户测试、视觉设计以及在实施过程中与开发团队密切合作等阶段。我会根据项目需求定制流程，始终专注于以用户为中心的解决方案。
+        - label: 你与初创公司合作吗？
+          content: |
+            当然！我喜欢与初创公司合作，帮助塑造他们的产品愿景，并从头开始创建用户友好的界面。我可以调整我的流程以适应快节奏的初创公司环境。
+    - title: 定价与时间表
+      questions:

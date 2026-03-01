@@ -25,21 +25,25 @@ export default defineAppConfig({
   footer: {
     credits: `Built with Nuxt UI • © ${new Date().getFullYear()}`,
     colorMode: false,
-    links: [{
-      'icon': 'i-simple-icons-discord',
-      'to': 'https://go.nuxt.com/discord',
-      'target': '_blank',
-      'aria-label': 'Nuxt on Discord'
-    }, {
-      'icon': 'i-simple-icons-x',
-      'to': 'https://go.nuxt.com/x',
-      'target': '_blank',
-      'aria-label': 'Nuxt on X'
-    }, {
-      'icon': 'i-simple-icons-github',
-      'to': 'https://github.com/nuxt/ui',
-      'target': '_blank',
-      'aria-label': 'Nuxt UI on GitHub'
-    }]
+    links: [
+      // {
+      //   'icon': 'i-simple-icons-discord',
+      //   'to': 'https://go.nuxt.com/discord',
+      //   'target': '_blank',
+      //   'aria-label': 'Nuxt on Discord'
+      // },
+      // {
+      //   'icon': 'i-simple-icons-x',
+      //   'to': 'https://go.nuxt.com/x',
+      //   'target': '_blank',
+      //   'aria-label': 'Nuxt on X'
+      // },
+      {
+        'icon': 'i-simple-icons-github',
+        'to': 'https://github.com/Nov-Two',
+        'target': '_blank',
+        'aria-label': 'Nuxt UI on GitHub'
+      }
+    ]
   }
 })

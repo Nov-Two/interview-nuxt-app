@@ -51,6 +51,7 @@ const [{ data: navigation }, { data: files }] = await Promise.all([
       </UMain>
     </NuxtLayout>
 
+    <!-- 全局搜索弹窗：仅在客户端渲染，快捷键 meta+k 触发 -->
     <ClientOnly>
       <LazyUContentSearch
         :files="files"
