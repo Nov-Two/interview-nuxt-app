@@ -41,15 +41,14 @@ jobs:
 
           # 启动新容器
           # 映射主机端口 3002 到容器端口 3000
-          # 设置 NUXT_APP_BASE_URL 环境变量确保正确的基础路径
-          docker run -d \
-            --name nuxt-app \
-            --restart always \
-            -p 3002:3000 \
-            -e NUXT_APP_BASE_URL='/nuxt/' \
-            nuxt-app
-
-          # 检查容器是否启动成功
+          # 设置 NUXT_APP_BASE_URL 环境变量确保正确的基础路径# 启动新容器
+            docker run -d \
+              --name nuxt-app \
+              --restart always \
+              -p 3002:3000 \
+              -e NUXT_APP_BASE_URL='/nuxt/' \
+              -e NODE_OPTIONS='--max-old-space-size=4096' \
+              nuxt-app         # 检查容器是否启动成功
           echo "Waiting for container to initialize..."
           sleep 10
 

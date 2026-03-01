@@ -3,22 +3,26 @@ FROM node:20 AS builder
 
 WORKDIR /app
 
+# Enable corepack for pnpm
+RUN corepack enable
+
 # Copy package files
-COPY package.json ./
+COPY package.json pnpm-lock.yaml ./
 
-# Install dependencies
-# We use npm install instead of npm ci because we don't have a package-lock.json
-RUN npm install
+# Install dependencies with mirror
+RUN npm config set registry https://registry.npmmirror.com/
+RUN pnpm config set registry https://registry.npmmirror.com/
+RUN pnpm install --frozen-lockfile
 
-# Rebuild native modules to ensure Linux compatibility
-RUN npm rebuild better-sqlite3 sharp
+# Rebuild native modules explicitly
+RUN pnpm rebuild better-sqlite3 sharp
 
 # Copy source code
 COPY . .
 
-# Build application
+# Build application with increased memory
 ENV NODE_OPTIONS="--max-old-space-size=4096"
-RUN npm run build
+RUN pnpm run build
 
 # Runtime stage
 FROM node:20
