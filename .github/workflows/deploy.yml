@@ -14,7 +14,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 9
+          version: 10
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -70,24 +70,24 @@ jobs:
           script: |
             set -e
             cd /home/interview-nuxt-app
-            
+
             # Extract artifacts
             echo "Extracting new release..."
             tar -xzf release.tar.gz
-            
+
             # Run diagnostics
             chmod +x scripts/diagnose.sh
             ./scripts/diagnose.sh
-            
+
             # Build runtime image (Fast: only copying files)
             echo "Building runtime image..."
             docker build -f Dockerfile.runtime -t nuxt-app .
-            
+
             # Stop old container
             echo "Restarting container..."
             docker stop nuxt-app || true
             docker rm nuxt-app || true
-            
+
             # Run new container
             docker run -d \
               --name nuxt-app \
@@ -96,7 +96,7 @@ jobs:
               -e NUXT_APP_BASE_URL='/nuxt/' \
               -e NODE_OPTIONS='--max-old-space-size=2048' \
               nuxt-app
-            
+
             # Verify deployment
             echo "Deployment complete. Checking container status..."
             sleep 5
