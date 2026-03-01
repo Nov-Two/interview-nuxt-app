@@ -29,8 +29,8 @@ jobs:
           git pull
 
           # 调试：列出文件确保 locales 目录存在
-          echo "Listing current directory:"
-          ls -R locales || echo "locales directory not found!"
+          echo "Listing i18n directory:"
+          ls -R i18n || echo "i18n directory not found!"
 
           # 构建 Docker 镜像
           docker build -t nuxt-app .
