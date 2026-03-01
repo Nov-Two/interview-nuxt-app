@@ -15,10 +15,6 @@ export default defineNuxtConfig({
     enabled: true
   },
 
-  app: {
-    baseURL: '/nuxt/'
-  },
-
   compatibilityDate: '2024-11-01',
 
   // nitro: {
