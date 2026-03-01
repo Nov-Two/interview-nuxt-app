@@ -19,23 +19,34 @@ jobs:
         password: ${{ secrets.SERVER_PASSWORD }}
         port: 22
         script: |
-          set -e  # 遇到错误立即停止执行
+          set -e  # 遇到错误立即停止
 
           # 进入项目目录
-          # 注意：请确保服务器上已经克隆了代码仓库到此目录
           cd /home/interview-nuxt-app
 
           # 拉取最新代码
-          git pull
+          echo "Pulling latest code..."
+          git pull origin main
 
-          # 调试：列出文件确保 locales 目录存在
-          echo "Listing i18n directory:"
-          ls -R i18n || echo "i18n directory not found!"
+          # 赋予诊断脚本执行权限
+          chmod +x scripts/diagnose.sh
 
-          # 构建 Docker 镜像
-          docker build -t nuxt-app .
+          # 运行诊断脚本
+          echo "Running pre-build diagnostics..."
+          ./scripts/diagnose.sh
+
+          # 构建镜像
+          echo "Building Docker image..."
+          # 使用 || true 捕获错误，以便在失败时输出更多信息
+          if ! docker build -t nuxt-app .; then
+              echo "❌ DOCKER BUILD FAILED!"
+              echo "Checking for OOM (Out Of Memory) events..."
+              dmesg | grep -i -E "oom|kill|out of memory" | tail -n 20
+              exit 1
+          fi
 
           # 停止并删除旧容器
+          echo "Stopping old container..."
           docker stop nuxt-app || true
           docker rm nuxt-app || true
 
