@@ -21,7 +21,7 @@ RUN pnpm rebuild better-sqlite3 sharp
 COPY . .
 
 # Build application with increased memory
-ENV NODE_OPTIONS="--max-old-space-size=4096"
+ENV NODE_OPTIONS="--max-old-space-size=2048"
 RUN pnpm run build
 
 # Runtime stage

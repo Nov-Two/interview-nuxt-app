@@ -32,13 +32,30 @@ jobs:
           chmod +x scripts/diagnose.sh
 
           # 运行诊断脚本
-          echo "Running pre-build diagnostics..."
-          ./scripts/diagnose.sh
+            echo "Running pre-build diagnostics..."
+            ./scripts/diagnose.sh
 
-          # 构建镜像
-          echo "Building Docker image..."
-          # 使用 || true 捕获错误，以便在失败时输出更多信息
-          if ! docker build -t nuxt-app .; then
+            # 检查并配置 Swap (如果小于 4GB 内存)
+            if [ $(free -m | grep Mem | awk '{print $2}') -lt 4000 ]; then
+                echo "Detected low memory system. Checking for swap..."
+                if [ $(swapon --show | wc -l) -le 1 ]; then
+                    echo "Creating 4GB swap file..."
+                    fallocate -l 4G /swapfile || dd if=/dev/zero of=/swapfile bs=1M count=4096
+                    chmod 600 /swapfile
+                    mkswap /swapfile
+                    swapon /swapfile
+                    echo "Swap created and enabled:"
+                    free -h
+                else
+                    echo "Swap already exists."
+                    free -h
+                fi
+            fi
+
+            # 构建镜像
+            echo "Building Docker image..."
+            # 使用 || true 捕获错误，以便在失败时输出更多信息
+            if ! docker build -t nuxt-app .; then
               echo "❌ DOCKER BUILD FAILED!"
               echo "Checking for OOM (Out Of Memory) events..."
               dmesg | grep -i -E "oom|kill|out of memory" | tail -n 20
@@ -51,14 +68,15 @@ jobs:
           docker rm nuxt-app || true
 
           # 启动新容器
-          # 映射主机端口 3002 到容器端口 3000
-          # 设置 NUXT_APP_BASE_URL 环境变量确保正确的基础路径# 启动新容器
+            # 映射主机端口 3002 到容器端口 3000
+            # 设置 NUXT_APP_BASE_URL 环境变量确保正确的基础路径
+            # 移除 --max-old-space-size=4096 因为这可能导致小内存服务器 OOM，使用 2048 或让 Docker 限制
             docker run -d \
               --name nuxt-app \
               --restart always \
               -p 3002:3000 \
               -e NUXT_APP_BASE_URL='/nuxt/' \
-              -e NODE_OPTIONS='--max-old-space-size=4096' \
+              -e NODE_OPTIONS='--max-old-space-size=2048' \
               nuxt-app         # 检查容器是否启动成功
           echo "Waiting for container to initialize..."
           sleep 10
