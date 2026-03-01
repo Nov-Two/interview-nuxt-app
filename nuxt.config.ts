@@ -21,14 +21,14 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2024-11-01',
 
-  nitro: {
-    prerender: {
-      routes: [
-        '/'
-      ],
-      crawlLinks: true
-    }
-  },
+  // nitro: {
+  //   prerender: {
+  //     routes: [
+  //       '/'
+  //     ],
+  //     crawlLinks: true
+  //   }
+  // },
 
   eslint: {
     config: {
