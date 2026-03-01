@@ -1,7 +1,6 @@
 node_modules
 .nuxt
 .data
-.output
 dist
 .DS_Store
 .git
