@@ -1,0 +1,12 @@
+node_modules
+.nuxt
+.data
+.output
+dist
+.DS_Store
+.git
+.github
+.vscode
+Dockerfile
+docker-compose.yml
+README.md
