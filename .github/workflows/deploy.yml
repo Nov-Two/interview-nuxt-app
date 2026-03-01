@@ -43,5 +43,9 @@ jobs:
             -e NUXT_APP_BASE_URL='/nuxt/' \
             nuxt-app
             
+          # 检查容器是否启动成功
+          sleep 5
+          docker ps -a | grep nuxt-app
+          
           # 清理未使用的镜像
           docker image prune -f
