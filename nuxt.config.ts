@@ -15,6 +15,10 @@ export default defineNuxtConfig({
     enabled: true
   },
 
+  app: {
+    baseURL: '/nuxt/'
+  },
+
   css: ['~/assets/css/main.css'],
 
   compatibilityDate: '2024-11-01',

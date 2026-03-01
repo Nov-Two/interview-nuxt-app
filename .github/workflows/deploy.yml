@@ -1,0 +1,47 @@
+name: Deploy Nuxt App
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy to Server
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        password: ${{ secrets.SERVER_PASSWORD }}
+        port: 22
+        script: |
+          # 进入项目目录
+          # 注意：请确保服务器上已经克隆了代码仓库到此目录
+          cd /home/interview-nuxt-app
+          
+          # 拉取最新代码
+          git pull
+          
+          # 构建 Docker 镜像
+          docker build -t nuxt-app .
+          
+          # 停止并删除旧容器
+          docker stop nuxt-app || true
+          docker rm nuxt-app || true
+          
+          # 启动新容器
+          # 映射主机端口 3002 到容器端口 3000
+          # 设置 NUXT_APP_BASE_URL 环境变量确保正确的基础路径
+          docker run -d \
+            --name nuxt-app \
+            --restart always \
+            -p 3002:3000 \
+            -e NUXT_APP_BASE_URL='/nuxt/' \
+            nuxt-app
+            
+          # 清理未使用的镜像
+          docker image prune -f
